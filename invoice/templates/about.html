@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content%}
+           <article class="media content-section">
+		   Create 2 classes (models) in Python that you can then use to "initialize" an empty database using SQLAlchemy. 
+		   You will use the SQLAlchemy Declarative system when defining these models so you will be able to use 
+		   the "create_all" method which will automatically create the tables in the database.
+			<p>
+			The 2 models will be "Invoice" and "InvoiceItem". They both must have a unique 'id' column as well 
+			as be relational using a FOREIGN KEY to the Invoice id on the InvoiceItem model, so the invoice 
+			items are linked to their parent invoice. The invoice model should have a date as well. 
+			The InvoiceItem model will have an integer column "units", a string column "description" and a numeric column "amount".
+			<p>
+			Then utilize the classes/models you just created inside a web app built using any Python web 
+			framework to expose a single "POST" endpoint so that we can create an invoice via the exposed URL. 
+			Then show the new invoice in the database. Add another "POST" endpoint to add an InvoiceItem. 
+			We would prefer to see this as a RESTful API, but it is not required.
+		   </article>
+{% endblock content %}

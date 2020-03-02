@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for invoice in invoices.items %}
+        <!-- <article class="media content-section"> -->
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{ url_for('new_invoiceitem', invoice_id=invoice.id) }}">{{ invoice.cust_name }}</a>
+              <small class="text-muted">{{ invoice.date_created.strftime('%Y-%m-%d') }}</small>
+            </div>
+          </div>
+
+        <!-- </article> -->
+    {% endfor %}
+    {% for page_num in invoices.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if invoices.page == page_num %}
+          <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Create Invoice</title>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    {% if title %}
+        <title>Invoice Tracker - {{ title }}</title>
+    {% else %}
+        <title>Invoice Tracker</title>
+    {% endif %}
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+	$(function() {
+		$( ".dtpick" ).datepicker();
+	});
+	</script>
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Invoice Tracker</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+			  <a class="nav-item nav-link" href="{{ url_for('new_invoice') }}">New Invoice</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+	<div class="content-section">
+		<form method="post" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group"> 
+				<legend class="border-bottom mb-2">Create Invoice</legend>
+				<p>
+				<div class="form-group">
+					{{ form.cust_name.label(class="form-control-label") }}
+
+					{{ form.cust_name(class="form-control form-control-lg") }}
+				</div>
+				<div class="form-group">
+					{{ form.date_created.label(class="form-control-label") }}
+
+					{{ form.date_created(class="dtpick") }}
+				</div>
+				<p>
+				<div class="form-group">
+					{{ form.submit(class="btn btn-outline-info") }}
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>
